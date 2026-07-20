@@ -15,6 +15,10 @@ terraform {
 provider "azurerm" {
   features {}
 }
+locals {
+  environment     = var.env
+  resource_prefix = "env-project-${local.environment}"
+}
 resource "azurerm_resource_group" "multi_env_rg" {
   name     = "terra-multi-env-rg"
   location = "westeurope"
