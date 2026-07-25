@@ -1,7 +1,7 @@
 variable "environment" {
   type    = string
   default = "dev"
-  # condition to accept only dev and prod environments:
+  # condition to accept only dev or prod environments:
   validation {
     condition     = contains(["dev", "prod"], var.environment)
     error_message = "The environment variable must be either 'dev' or 'prod'."

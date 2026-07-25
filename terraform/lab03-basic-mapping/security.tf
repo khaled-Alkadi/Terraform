@@ -3,7 +3,7 @@ data "azurerm_key_vault" "import_key_valut" {
   resource_group_name = "kalkad-allgemain"
 }
 
-data "azurerm_key_vault_secret" "db_administrator" {
+data "azurerm_key_vault_secret" "db_administrator_pass" {
   name         = "db-administrator"
   key_vault_id = data.azurerm_key_vault.import_key_valut.id
 }
