@@ -32,3 +32,8 @@ resource "azurerm_key_vault_secret" "sec_db" {
   value        = random_password.rand_db_pass.result
   tags         = local.common_tags
 }
+resource "azurerm_role_assignment" "kv_admin" {
+  scope                = azurerm_key_vault.kv_rbac_lab.id
+  role_definition_name = "Key Vault Secrets User"
+  principal_id         = azurerm_linux_virtual_machine.rbac_vm.identity[0].principal_id
+}
