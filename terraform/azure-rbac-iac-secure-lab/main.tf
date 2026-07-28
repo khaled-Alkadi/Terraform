@@ -15,3 +15,11 @@ terraform {
 provider "azurerm" {
   features {}
 }
+locals {
+  res_location = "westeurope"
+  common_tags = {
+    Project   = "abac-secure"
+    CreatedBy = "Terraform"
+    ManagedBy = "IaC"
+  }
+}
