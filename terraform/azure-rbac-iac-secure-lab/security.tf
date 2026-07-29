@@ -1,11 +1,12 @@
 resource "azurerm_key_vault" "kv_rbac_lab" {
-  name                      = "kv-sec-rbac-lab"
-  resource_group_name       = azurerm_resource_group.security_group.name
-  location                  = local.res_location
-  sku_name                  = "standard"
-  tenant_id                 = data.azurerm_client_config.current.tenant_id
-  tags                      = local.common_tags
-  enable_rbac_authorization = true
+  name                = "kv-sec-rbac-lab"
+  resource_group_name = azurerm_resource_group.security_group.name
+  location            = local.res_location
+  sku_name            = "standard"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  tags                = local.common_tags
+  # tflint-ignore: terraform_deprecated_argument
+  rbac_authorization_enabled = true
 }
 resource "random_password" "rand_comp_pass" {
   length  = 32
