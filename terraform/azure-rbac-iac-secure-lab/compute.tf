@@ -15,7 +15,7 @@ resource "azurerm_linux_virtual_machine" "rbac_vm" {
   network_interface_ids           = [azurerm_network_interface.comp_nic.id]
   size                            = "Standard_B1s"
   disable_password_authentication = false
-  identity { type = "SystemAssigned" }
+  identity {type = "SystemAssigned"}
   tags = local.common_tags
   source_image_reference {
     publisher = "Canonical"
