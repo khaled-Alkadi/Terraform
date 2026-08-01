@@ -13,14 +13,14 @@ resource "azurerm_linux_virtual_machine" "rbac_vm" {
   resource_group_name             = azurerm_resource_group.comp_rg.name
   location                        = local.res_location
   network_interface_ids           = [azurerm_network_interface.comp_nic.id]
-  size                            = "Standard_B1s"
+  size                            = "D2ads_v6"
   disable_password_authentication = false
   identity {type = "SystemAssigned"}
   tags = local.common_tags
   source_image_reference {
     publisher = "Canonical"
-    offer     = "0001-com-ubuntu-server-focal"
-    sku       = "20_04-lts-gen2"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts-gen2"
     version   = "latest"
   }
   os_disk {

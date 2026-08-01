@@ -62,9 +62,14 @@ resource "azurerm_role_assignment" "vm_ops_vm_contributor" {
   principal_id = data.azuread_group.vm_ops_team.object_id
   role_definition_name = "Virtual Machine Contributor"
 }
-resource "azurerm_role_assignment" "vm_ops_kv_secret_user" {
+resource "azurerm_role_assignment" "vm_ops_kv_secret_reader" {
   scope                = azurerm_key_vault.kv_rbac_lab.id # 👈 تعديل Scope إلى مستوى الـ Key Vault
   principal_id         = data.azuread_group.vm_ops_team.object_id
+  role_definition_name = "Key Vault Reader"
+}
+resource "azurerm_role_assignment" "vm_ops_kv_secret_user" {
+  scope = azurerm_key_vault_secret.sec_comp.resource_versionless_id
+  principal_id = data.azuread_group.vm_ops_team.object_id
   role_definition_name = "Key Vault Secrets User"
 }
 # roles for db_team #
@@ -84,8 +89,13 @@ resource "azurerm_role_assignment" "db_ops_server_contributor" {
   principal_id = data.azuread_group.db_ops_team.object_id
   role_definition_name = "Contributor"
 }
+resource "azurerm_role_assignment" "db_ops_kv_reader" {
+  scope = azurerm_key_vault.kv_rbac_lab.id
+  principal_id = data.azuread_group.db_ops_team.object_id
+  role_definition_name = "Key Vault Reader"
+}
 resource "azurerm_role_assignment" "db_ops_kv_secret_user" {
-  scope                = azurerm_key_vault.kv_rbac_lab.id # 👈 تعديل Scope إلى مستوى الـ Key Vault
+  scope                = azurerm_key_vault_secret.sec_db.resource_versionless_id
   principal_id         = data.azuread_group.db_ops_team.object_id
   role_definition_name = "Key Vault Secrets User"
 }

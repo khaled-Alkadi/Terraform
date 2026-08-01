@@ -9,7 +9,7 @@ resource "azurerm_resource_group" "db_rg" {
   tags     = local.common_tags
 }
 resource "azurerm_resource_group" "security_group" {
-  name     = "sec-rg"
+  name     = "security-rg"
   location = local.res_location
   tags     = local.common_tags
 }
