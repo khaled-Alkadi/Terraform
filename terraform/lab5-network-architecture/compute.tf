@@ -18,32 +18,27 @@ resource "azurerm_linux_virtual_machine" "test_vm" {
   location                        = local.res_location
   size                            = "Standard_B2s" # حجم متوفر ومناسب للحسابات التجريبية
   admin_username                  = "kha"
-  admin_password                  = "P@ssw0rd123456!"
+  admin_password                  = var.admin_password
   disable_password_authentication = false
 
   network_interface_ids = [
     azurerm_network_interface.vm_nic.id,
   ]
-
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
-
   source_image_reference {
     publisher = "Canonical"
     offer     = "0001-com-ubuntu-server-jammy"
     sku       = "22_04-lts-gen2"
     version   = "latest"
   }
-
   identity {
     type = "SystemAssigned"
   }
-
   tags = local.common_tags
 }
-
 # 3. منح الـ VM صلاحية القراءة من Key Vault
 resource "azurerm_role_assignment" "vm_kv_user" {
   scope                = azurerm_key_vault_secret.vm_lin_secret.versionless_id
