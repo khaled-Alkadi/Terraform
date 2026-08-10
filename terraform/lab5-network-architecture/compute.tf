@@ -20,7 +20,6 @@ resource "azurerm_linux_virtual_machine" "test_vm" {
   admin_username                  = "kha"
   admin_password                  = var.admin_password
   disable_password_authentication = false
-
   network_interface_ids = [
     azurerm_network_interface.vm_nic.id,
   ]
