@@ -7,9 +7,9 @@ resource "azurerm_key_vault" "allgemein_kv" {
   enable_rbac_authorization     = true
   public_network_access_enabled = true
   network_acls {
-    bypass         = "AzureServices"
-    default_action = "Deny"
-    ip_rules       = ["84.115.213.195/32"]
+    bypass                     = "AzureServices"
+    default_action             = "Deny"
+    ip_rules                   = ["84.115.213.195/32"]
     virtual_network_subnet_ids = [azurerm_subnet.bastion_sub.id]
   }
 }
@@ -38,8 +38,7 @@ resource "azurerm_key_vault_secret" "vm_secret" {
   depends_on   = [azurerm_private_endpoint.kv_pe]
 }
 resource "azurerm_role_assignment" "vm_role" {
-  scope                = azurerm_key_vault.allgemein_kv.id
+  scope                = azurerm_key_vault_secret.vm_secret.versionless_id
   principal_id         = azurerm_windows_virtual_machine.win_serv.identity[0].principal_id
   role_definition_name = "Key Vault Secrets User"
 }
-
