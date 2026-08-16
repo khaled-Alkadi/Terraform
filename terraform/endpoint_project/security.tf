@@ -4,7 +4,7 @@ resource "azurerm_key_vault" "allgemein_kv" {
   location                      = azurerm_resource_group.pe_rg.location
   tenant_id                     = data.azurerm_client_config.corrent.tenant_id
   sku_name                      = "standard"
-  enable_rbac_authorization     = true
+  rbac_authorization_enabled = true
   public_network_access_enabled = true
   network_acls {
     bypass                     = "AzureServices"
