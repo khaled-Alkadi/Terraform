@@ -9,7 +9,7 @@ terraform {
     resource_group_name  = "terraform-admin-rg"
     storage_account_name = "backup1terra1tfstate"
     container_name       = "backend"
-    key                  = "practice-vars-outputs.tfstate"
+    key                  = "count-vars-outputs.tfstate"
   }
 }
 provider "azurerm" {

@@ -1,4 +1,4 @@
-output "rg_name" {
-  value = azurerm_resource_group.practice_rg.name
-  description = "Name of RG"
+output "rg_names" {
+  value = azurerm_resource_group.rg_list[*].name
+  description = "Name of All RGs"
 }
