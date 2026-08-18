@@ -30,3 +30,14 @@ variable "common_tags" {
     "ManagedBy" = "IaC"
   }
 }
+variable "nsg_rules" {
+  type = map(object({
+    port     = string
+    priority = number
+  }))
+  description = "Dynamic Rules"
+  default = {
+    "Allow-HTTP" = { priority = 100, port = "80" },
+    "Allow-SHH"  = { priority = 110, port = "22" }
+  }
+}
