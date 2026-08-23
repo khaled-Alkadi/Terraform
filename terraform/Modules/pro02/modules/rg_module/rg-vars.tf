@@ -3,5 +3,5 @@ variable "rg_name" {
 }
 variable "comm_location" {
   type = string
-  default = "westeurope"
+  default = "swedencentral"
 }
