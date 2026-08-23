@@ -1,0 +1,15 @@
+variable "comm_location" {
+  type = string
+  default = "westeurope"
+}
+variable "rg_name" {
+  type = string
+  description = "name of the resource group"
+}
+variable "vnet_name" {
+  type = string
+}
+variable "add_space" {
+  type = string
+  default = "10.0.0.0/16"
+}
