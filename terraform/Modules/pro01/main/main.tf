@@ -1,13 +1,10 @@
-locals {
-  dev_ext = "dev"
-  prod_ext = "prod"
+resource "azurerm_resource_group" "dev_rg" {
+  name = "rg-dev"
+  location = "swedencentral"
 }
-module "dev_rg" {
-  source = "../modules/rgs"
-  rg_name = "rg-${local.dev_ext}"
-}
-module "prod_rg" {
-  source = "../modules/rgs"
-  rg_name = "rg-${local.prod_ext}"
-  default_location = "westeurope"
+module "vnet" {
+  source = "../modules/vnet"
+  vnet_name = "vnet-dev"
+  rg_name = azurerm_resource_group.dev_rg.name
+  loc = azurerm_resource_group.dev_rg.location
 }

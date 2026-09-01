@@ -1,7 +1,9 @@
 variable "rg_name" {
   type = string
 }
-variable "default_location" {
+variable "vnet_name" {
   type = string
-  default = "northeurope"
+}
+variable "loc" {
+  type = string
 }
