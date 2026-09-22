@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "azurerm" {
-    resource_group_name = "backup-rg"
+    resource_group_name = "terra-backup-rg"
     storage_account_name = "backupterra01st"
     container_name = "conbackup"
     key = "B2B-infrastructure"
