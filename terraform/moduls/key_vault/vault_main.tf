@@ -1,4 +1,4 @@
-resource "azurerm_key_vault" "b2b_kv" {
+resource "azurerm_key_vault" "kv" {
   name = var.ky_configs.name
   resource_group_name = var.ky_configs.loc
   location = var.ky_configs.loc
