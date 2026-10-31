@@ -1,7 +1,7 @@
 variable "ky_configs" {
   type = object({
     name = string
-    loc = string
+    rg_name = string
     loc = string
     sku = string
     ten_id = string

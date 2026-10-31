@@ -24,7 +24,7 @@ module "sub_frontend_dev" {
     name      = "sub-frontend-${local.env_dev}"
     rg_name   = module.rg_dev.rg_out.name
     vnet_name = module.vnet_dev.vnet_out.name
-    prefix = ["10.0.1.0/24"]
+    prefix    = ["10.0.1.0/24"]
   }
 }
 module "sub_backend_dev" {
@@ -33,6 +33,20 @@ module "sub_backend_dev" {
     name      = "sub-backend-${local.env_dev}"
     rg_name   = module.rg_dev.rg_out.name
     vnet_name = module.vnet_dev.vnet_out.name
-    prefix = ["10.0.2.0/24"]
+    prefix    = ["10.0.2.0/24"]
+  }
+}
+data "azurerm_client_config" "current" {}
+module "kv_dev" {
+  source = "../../moduls/key_vault"
+  ky_configs = {
+    ten_id      = data.azurerm_client_config.current.tenant_id
+    rg_name     = module.rg_dev.rg_out.name
+    loc         = module.rg_dev.rg_out.location
+    name        = "kv-test-dev-khaled2026"
+    pub_access  = true
+    rbac        = true
+    sku         = "standard"
+    soft_delete = 7
   }
 }
